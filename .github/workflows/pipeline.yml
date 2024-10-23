@@ -21,8 +21,11 @@ jobs:
         node-version: 20.x
         cache: 'npm'
 
-    - name: Install NPM dependencies
+    - name: Install dependencies
       run: npm install
 
-    - name: Execute unit tests
+    - name: Fix mocha permissions
+      run: chmod +x node_modules/.bin/mocha
+
+    - name: Run unit tests
       run: npm run test:unit
