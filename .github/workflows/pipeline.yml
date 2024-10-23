@@ -1,5 +1,4 @@
-
-name: Buuild and test
+name: Build and test
 
 on:
   push:
@@ -12,17 +11,18 @@ jobs:
 
     runs-on: ubuntu-latest
 
-
     steps:
     - name: Checkout the code
-    - uses: actions/checkout@v4
-    - name: Use Node.js 20x
+      uses: actions/checkout@v4
+
+    - name: Use Node.js 20.x
       uses: actions/setup-node@v4
       with:
         node-version: 20.x
         cache: 'npm'
 
     - name: Install NPM dependencies
-    - run: npm install
-    - name: Execute unit tests 
-    - run: npm test:unit
+      run: npm install
+
+    - name: Execute unit tests
+      run: npm run test:unit
