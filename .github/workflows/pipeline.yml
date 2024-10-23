@@ -1,4 +1,4 @@
-name: Build and test
+name: Build and test and deploy
 
 on:
   push:
@@ -32,3 +32,14 @@ jobs:
 
     - name: Display your softuni username
       run: echo 'daniel131212'
+
+  deploy:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to production
+        uses: johnbeynon/render-deploy-action@v0.0.8
+        with:
+          service-id: ${{ secrets.WEB_SERVICE_KEY }}
+          api-key: ${{ secrets.RENDER_API_KEY }}
+          wait-for-success: true
